@@ -1,0 +1,21 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: R
+sudo: false
+cache: packages
+r: bioc-devel
+sudo: false
+build_script:
+  - travis-tool.sh install_deps
+
+
+#check args (ignore vignettes)
+env:
+  global:
+    - _R_CHECK_FORCE_SUGGESTS_="FALSE"
+    - R_BUILD_ARGS="--no-build-vignettes --no-manual --no-resave-data"
+    - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings"
+    - R_CHECK_TIME="TRUE"
+    - R_CHECK_TESTS="TRUE"
+    - _R_CHECK_TIMINGS_="0"
+
